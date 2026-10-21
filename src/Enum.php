@@ -337,7 +337,7 @@ abstract class Enum implements Enumerable, JsonSerializable
 
     protected function resolveByStaticCall(): array
     {
-        if (strpos(static::class, 'class@anonymous') !== 0) {
+        if (! (new ReflectionClass(static::class))->isAnonymous()) {
             throw new InvalidValueException(null, static::class);
         }
 
